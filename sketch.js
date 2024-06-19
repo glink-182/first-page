@@ -25,8 +25,9 @@ function setup() {
 }
 
 function draw() {
-  background(255); 
-  
+  background(255);  // Clear the background each time
+
+  // Draw the background images first
   if (sadOwlVisible) {
     image(sadOwl, width - 1000, owlY, 1000, 1000);
     if (owlY > height - 1000) {

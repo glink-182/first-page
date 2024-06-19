@@ -1,10 +1,12 @@
 let img, sadOwl, cryOwl;
 let comicSansFont;
 let buttonHover = false;
+let cancelButtonHover = false;
 let sadOwlVisible = false;
 let cryOwlVisible = false;
 let owlY = 1080;
 let owlSpeed = 20;
+let cancelClickCount = 0;
 
 function preload() {
   img = loadImage('owl.png'); 
@@ -76,7 +78,12 @@ function drawButtons() {
   textSize(20);
   text("Never Mind", width / 2.5, 877);
 
-   fill(227, 220, 227);
+  if (cancelButtonHover) {
+    fill(200, 200, 200);  
+  } else {
+    fill(227, 220, 227); 
+  }
+  
   noStroke();
   rect(width / 2.5, 950, 165, 40, 100);
   fill(250);
@@ -107,12 +114,23 @@ function mouseMoved() {
 
 function mousePressed() {
   if (mouseX > width / 2.5 - 82.5 && mouseX < width / 2.5 + 82.5 && mouseY > 930 && mouseY < 970) {
-    cryOwlVisible = true;
-    sadOwlVisible = false;
-    owlY = 1080;
-    redraw();
+    cancelClickCount++;
+    if (cancelClickCount === 2) {
+      window.location.href = "https://pmaksymenko.github.io/zaliczenie2024/";
+    } else {
+      cryOwlVisible = true;
+      sadOwlVisible = false;
+      owlY = 1080;
+      redraw();
+    }
   }
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  redraw();
+}
+
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);

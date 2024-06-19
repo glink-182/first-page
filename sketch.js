@@ -1,6 +1,7 @@
 let img, sadOwl, cryOwl;
 let comicSansFont;
 let buttonHover = false;
+let neverMindButtonHover = false;
 let cancelButtonHover = false;
 let sadOwlVisible = false;
 let cryOwlVisible = false;
@@ -24,9 +25,8 @@ function setup() {
 }
 
 function draw() {
-  background(255);  // Clear the background each time
-
-  // Draw the background images first
+  background(255); 
+  
   if (sadOwlVisible) {
     image(sadOwl, width - 1000, owlY, 1000, 1000);
     if (owlY > height - 1000) {
@@ -113,6 +113,10 @@ function mouseMoved() {
 }
 
 function mousePressed() {
+  if (mouseX > width / 2.5 - 75 && mouseX < width / 2.5 + 75 && mouseY > 850 && mouseY < 910) {
+    window.location.href = "https://glink-182.github.io/congrats/";
+  }
+  
   if (mouseX > width / 2.5 - 82.5 && mouseX < width / 2.5 + 82.5 && mouseY > 930 && mouseY < 970) {
     cancelClickCount++;
     if (cancelClickCount === 2) {
@@ -125,12 +129,6 @@ function mousePressed() {
     }
   }
 }
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  redraw();
-}
-
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
